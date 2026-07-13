@@ -12,10 +12,5 @@ class Settings(BaseSettings):
     frontend_origin: str = "http://localhost:3000"
     email_from: str | None = None
     resend_api_key: str | None = None
-    smtp_host: str | None = None
-    smtp_port: int = 587
-    smtp_user: str | None = None
-    smtp_password: str | None = None
-    smtp_from: str | None = None
 
 settings = Settings()

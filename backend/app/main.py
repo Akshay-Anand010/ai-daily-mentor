@@ -66,6 +66,19 @@ def pdf(lesson_id: int, session: Session = Depends(db)):
 @app.post("/api/subscribe", status_code=201)
 def subscribe(body: Subscribe, session: Session = Depends(db)):
     user = session.scalar(select(User).where(User.email == body.email))
+    is_new = user is None
     if not user:
         user = User(email=body.email); session.add(user); session.flush(); session.add(UserSettings(user_id=user.id))
-    session.commit(); return {"message": "You are subscribed."}
+    session.commit()
+    # A first lesson gives a new subscriber immediate confirmation; scheduled
+    # delivery continues daily thereafter.
+    if is_new:
+        lesson = session.scalars(select(Lesson).order_by(Lesson.created_at.desc())).first()
+        if lesson:
+            try:
+                status, message_id = send_lesson(user.email, lesson.title, render_pdf(lesson.title, lesson.content))
+            except Exception:
+                status, message_id = "failed", None
+            session.add(EmailLog(user_id=user.id, lesson_id=lesson.id, status=status, provider_message_id=message_id))
+            session.commit()
+    return {"message": "You are subscribed."}

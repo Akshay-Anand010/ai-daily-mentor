@@ -17,7 +17,20 @@ docker compose up --build
 
 Open `http://localhost:3000`; API documentation is at `http://localhost:8000/docs`.
 
-The system runs in a safe demo mode until `OPENAI_API_KEY` and an email provider are configured. In demo mode it creates a curriculum-based lesson without contacting third parties. Configure `RESEND_API_KEY` and `EMAIL_FROM` to deliver the generated PDF to subscribers.
+## Free local AI mode (recommended for development)
+
+The default provider is [Ollama](https://ollama.com/download/mac), which runs models locally and needs no API key. Install it, then run:
+
+```bash
+ollama pull llama3.2
+ollama run llama3.2
+```
+
+Keep Ollama running and start the app with Docker. The included `.env.example` points Docker on macOS to `host.docker.internal:11434`. For a non-Docker backend, set `OLLAMA_BASE_URL=http://localhost:11434`. Set `LLM_PROVIDER=demo` for a no-model fallback, or `LLM_PROVIDER=openai` and add `OPENAI_API_KEY` to use OpenAI.
+
+Configure `RESEND_API_KEY` and `EMAIL_FROM` to deliver generated PDFs to subscribers. Local models make lesson generation free, but email delivery to public subscribers still requires an email provider and a deployed backend.
+
+For fully local email testing, Docker Compose starts Mailpit automatically. It catches outgoing messages locally (nothing is delivered to the public internet); view them at `http://localhost:8025`.
 
 ## Deployment and subscriptions
 
