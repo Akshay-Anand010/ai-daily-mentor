@@ -38,9 +38,6 @@ Configure `RESEND_API_KEY` and `EMAIL_FROM` to deliver generated PDFs to subscri
 
 For fully local email testing, Docker Compose starts Mailpit automatically. It catches outgoing messages locally (nothing is delivered to the public internet); view them at `http://localhost:8025`.
 
-## Local Setup Demo
-
-
 ## Deployment and subscriptions
 
 GitHub Pages can host the static dashboard, but it cannot securely store email addresses or run scheduled jobs. Deploy `backend` to Render or Railway and set `NEXT_PUBLIC_API_URL` to its HTTPS URL; the dashboard's subscription form then writes to your backend. Full instructions are in [docs/deployment.md](docs/deployment.md).
