@@ -17,6 +17,10 @@ docker compose up --build
 
 Open `http://localhost:3000`; API documentation is at `http://localhost:8000/docs`.
 
+## Local setup video
+
+Watch the step-by-step local setup walkthrough: [AI Daily Mentor local setup on YouTube](https://youtu.be/U7eqcbZJGfs).
+
 ## Free local AI mode (recommended for development)
 
 The default provider is [Ollama](https://ollama.com/download/mac), which runs models locally and needs no API key. Install it, then run:
