@@ -44,3 +44,12 @@ class Article(Base):
     url: Mapped[str] = mapped_column(String(1000), unique=True)
     summary: Mapped[str] = mapped_column(Text, default="")
     published_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
+class EmailLog(Base):
+    __tablename__ = "email_logs"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    lesson_id: Mapped[int] = mapped_column(ForeignKey("lessons.id"))
+    status: Mapped[str] = mapped_column(String(30), default="queued")
+    provider_message_id: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
