@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+backend/mentor.db
+frontend/.next/
+frontend/node_modules/
+*.log
