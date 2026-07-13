@@ -19,7 +19,9 @@ Open `http://localhost:3000`; API documentation is at `http://localhost:8000/doc
 
 ## Local setup video
 
-Watch the step-by-step local setup walkthrough: [AI Daily Mentor local setup on YouTube](https://youtu.be/U7eqcbZJGfs).
+[![Watch the AI Daily Mentor local setup video](https://img.youtube.com/vi/U7eqcbZJGfs/maxresdefault.jpg)](https://youtu.be/U7eqcbZJGfs)
+
+▶ Click the image to watch the step-by-step local setup walkthrough.
 
 ## Free local AI mode (recommended for development)
 
